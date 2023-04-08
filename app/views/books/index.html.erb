@@ -1,0 +1,32 @@
+<div class="container mt-3">
+  <div class="row">
+
+    <%= render 'users/left_list', user: current_user %>
+
+    <div class="col-lg-8 ml-5">
+      <h2>Books</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+          <tr style="">
+            <th>
+              <%= link_to user_path(book.user_id) do %>
+                <%= image_tag User.find(book.user_id).get_profile_image(90,90) %>
+              <% end %>
+            </th>
+            <th><%= link_to book.title, book_path(book.id) %></th>
+            <th><%= book.body %></th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

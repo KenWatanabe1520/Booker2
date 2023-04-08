@@ -1,0 +1,34 @@
+<div class="container mt-3">
+  <div class="row">
+    <%= render 'users/left_list', user: @user%>
+    <div class="col-lg-7 ml-5">
+      <h2>Books detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>
+              <%= image_tag @user.get_profile_image(90,90) %><br>
+              <%= link_to @user.name, user_path(@user.id) %>
+            </th>
+            <th><%= link_to @book.title, book_path(@book.id) %></th>
+            <th><%= @book.body %></th>
+            <th>
+              <div type="button" class="btn btn-success text-center text-white py-0">
+                <%= link_to edit_book_path(@book.id) do %>
+                  <p class="text-white my-0">Edit</p>
+                <% end %>
+              </div>
+            </th>
+            <th>
+              <div type="button" class="btn btn-danger text-center text-white py-0">
+                <%= link_to book_path(@book.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+                  <p class="text-white my-0">Destroy</p>
+                <% end %>
+              </div>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

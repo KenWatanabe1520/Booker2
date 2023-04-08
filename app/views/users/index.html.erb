@@ -1,0 +1,28 @@
+<div class="container mt-3">
+  <div class="row">
+
+    <%= render 'users/left_list', user: current_user %>
+
+    <div class="col-lg-8 ml-5">
+      <h2>Users</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr style="">
+            <th><%= image_tag user.get_profile_image(90,90) %></th>
+            <th><%= user.name %></th>
+            <th><%= link_to "Show", user_path(user.id) %></th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
