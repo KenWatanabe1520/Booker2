@@ -12,6 +12,7 @@
             </th>
             <th><%= link_to @book.title, book_path(@book.id) %></th>
             <th><%= @book.body %></th>
+            <% if @user.id == current_user.id %>
             <th>
               <div type="button" class="btn btn-success text-center text-white py-0">
                 <%= link_to edit_book_path(@book.id) do %>
@@ -26,6 +27,7 @@
                 <% end %>
               </div>
             </th>
+            <% end %>
           </tr>
         </tbody>
       </table>

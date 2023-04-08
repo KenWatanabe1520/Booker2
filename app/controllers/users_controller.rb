@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :is_matching_login_user, only[:edit, :update]
 
   def index
     @users = User.all
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
 
     @user = current_user
     if @user.update(user_params)
-      #
+      flash[:notice] = "You have updated user successfully."
       redirect_to user_path(current_user)
     else
       render :edit
@@ -34,5 +35,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
+
+
 
 end
