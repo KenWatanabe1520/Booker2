@@ -22,6 +22,8 @@
             <th></th>
             <th>Title</th>
             <th>Opinion</th>
+            <th></th>
+            <th style="width:20%"></th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +36,26 @@
             </th>
             <th><%= link_to book.title, book_path(book.id) %></th>
             <th><%= book.body %></th>
+            <!--いいね機能-->
+            <th>
+              <% if book.favorited_by?(current_user) %>
+                <p>
+                  <%= link_to book_favorites_path(book), method: :delete do %>
+                    <i class="fas fa-heart text-danger"></i><%= book.favorites.count %>
+                  <% end %>
+                </p>
+              <% else %>
+                <p>
+                  <%= link_to book_favorites_path(book), method: :post do %>
+                    <i class="fas fa-heart text-secondary"></i><%= book.favorites.count %>
+                  <% end %>
+                </p>
+              <% end %>
+            </th>
+            <!--いいね機能-->
+            <th>
+              <%= "コメント数:#{book.book_comments.count}" %>
+            </th>
           </tr>
           <% end %>
         </tbody>
